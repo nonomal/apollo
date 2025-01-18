@@ -2,30 +2,30 @@ Changes by Version
 ==================
 Release Notes.
 
-Apollo 2.0.0
+Apollo 2.4.0
 
 ------------------
-* [Fix issue that the $ symbol is not used when reading shell variables](https://github.com/ctripcorp/apollo/pull/3890)
-* [Bump xstream from 1.4.17 to 1.4.18](https://github.com/apolloconfig/apollo/pull/3916)
-* [switch apollo.config-service log from warning to info level](https://github.com/ctripcorp/apollo/pull/3884)
-* [Make Access Key Timestamp check configurable](https://github.com/ctripcorp/apollo/pull/3908)
-* [remove ctrip profile](https://github.com/ctripcorp/apollo/pull/3920)
-* [Remove spring dependencies from internal code](https://github.com/apolloconfig/apollo/pull/3937)
-* [Fix issue: ingress syntax](https://github.com/apolloconfig/apollo/pull/3933)
-* [refactor: let open api more easier to use and development](https://github.com/apolloconfig/apollo/pull/3943)
-* [feat(scripts): use bash to call openapi](https://github.com/apolloconfig/apollo/pull/3980)
-* [Support search by item](https://github.com/apolloconfig/apollo/pull/3977)
-* [Implement password policies to avoid weak passwords](https://github.com/apolloconfig/apollo/pull/4008)
-* [Extend the gray release capability to support dimensions other than IP](https://github.com/apolloconfig/apollo/pull/4013)
-* [public namespace basic function](https://github.com/apolloconfig/apollo/pull/3850)
-* [Bump version to 2.0.0 and drop java 1.7 support](https://github.com/apolloconfig/apollo/pull/4015)
-* [Optimize home page style](https://github.com/apolloconfig/apollo/pull/4052)
-* [Support Java 17](https://github.com/apolloconfig/apollo/pull/4060)
-* [Optimize top navbar style](https://github.com/apolloconfig/apollo/pull/4073)
-* [Support export/import configs by apollo env](https://github.com/apolloconfig/apollo/pull/3947)
-* [Catch LinkageError for ClassLoaderUtil.isClassPresent in case class is present but is failed to load](https://github.com/apolloconfig/apollo/pull/4097)
-* [Split helm chart into another repo](https://github.com/apolloconfig/apollo/pull/4125)
-* [fix gray publish refresh item status](https://github.com/apolloconfig/apollo/pull/4128)
+* [Update the server config link in system info page](https://github.com/apolloconfig/apollo/pull/5204)
+* [Feature support portal restTemplate Client connection pool config](https://github.com/apolloconfig/apollo/pull/5200)
+* [Feature added the ability for administrators to globally search for Value](https://github.com/apolloconfig/apollo/pull/5182)
+* [Fix: Resolve issues with duplicate comments and blank lines in configuration management](https://github.com/apolloconfig/apollo/pull/5232)
+* [Fix link namespace published items show missing some items](https://github.com/apolloconfig/apollo/pull/5240)
+* [Feature: Add limit and whitelist for namespace count per appid+cluster](https://github.com/apolloconfig/apollo/pull/5228)
+* [Feature support the observe status access-key for pre-check and logging only](https://github.com/apolloconfig/apollo/pull/5236)
+* [Feature add limit for items count per namespace](https://github.com/apolloconfig/apollo/pull/5227)
+* [Feature: Add ConfigService cache record stats function](https://github.com/apolloconfig/apollo/pull/5247)
+* [RefreshAdminServerAddressTask supports dynamic configuration of time interval](https://github.com/apolloconfig/apollo/pull/5248)
+* [Refactor: Configuration files uniformly use Kebab style](https://github.com/apolloconfig/apollo/pull/5262)
+* [Feature: openapi query namespace support not fill item](https://github.com/apolloconfig/apollo/pull/5249)
+* [Refactor: align database ClusterName and NamespaceName fields lengths](https://github.com/apolloconfig/apollo/pull/5263)
+* [Feature: Added the value length limit function for AppId-level configuration items](https://github.com/apolloconfig/apollo/pull/5264)
+* [Fix: ensure clusters order in envClusters open api](https://github.com/apolloconfig/apollo/pull/5277)
+* [Fix: bump xstream from 1.4.20 to 1.4.21 to fix CVE-2024-47072](https://github.com/apolloconfig/apollo/pull/5280)
+* [Feature: highlight diffs for properties](https://github.com/apolloconfig/apollo/pull/5282)
+* [Feature: Add rate limiting function to ConsumerToken](https://github.com/apolloconfig/apollo/pull/5267)
+* [Feature: add JSON formatting function in apollo-portal](https://github.com/apolloconfig/apollo/pull/5287)
+* [Fix: add missing url patterns for AdminServiceAuthenticationFilter](https://github.com/apolloconfig/apollo/pull/5291)
+* [Fix: support java.time.Instant serialization with gson](https://github.com/apolloconfig/apollo/pull/5298)
 
 ------------------
-All issues and pull requests are [here](https://github.com/ctripcorp/apollo/milestone/8?closed=1)
+All issues and pull requests are [here](https://github.com/apolloconfig/apollo/milestone/15?closed=1)

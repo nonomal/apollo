@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Apollo Authors
+ * Copyright 2024 Apollo Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ import com.ctrip.framework.apollo.biz.entity.ReleaseMessage;
 import com.ctrip.framework.apollo.biz.grayReleaseRule.GrayReleaseRulesHolder;
 import com.ctrip.framework.apollo.biz.message.ReleaseMessageListener;
 import com.ctrip.framework.apollo.biz.message.Topics;
+import com.ctrip.framework.apollo.common.utils.WebUtils;
 import com.ctrip.framework.apollo.configservice.util.NamespaceUtil;
 import com.ctrip.framework.apollo.configservice.util.WatchKeysUtil;
 import com.ctrip.framework.apollo.core.ConfigConsts;
@@ -27,7 +28,6 @@ import com.ctrip.framework.apollo.core.dto.ApolloConfig;
 import com.ctrip.framework.apollo.core.utils.PropertiesUtil;
 import com.ctrip.framework.apollo.tracer.Tracer;
 import com.google.common.base.Joiner;
-import com.google.common.base.Splitter;
 import com.google.common.base.Strings;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
@@ -65,8 +65,6 @@ import java.util.concurrent.TimeUnit;
 public class ConfigFileController implements ReleaseMessageListener {
   private static final Logger logger = LoggerFactory.getLogger(ConfigFileController.class);
   private static final Joiner STRING_JOINER = Joiner.on(ConfigConsts.CLUSTER_NAMESPACE_SEPARATOR);
-  private static final Splitter X_FORWARDED_FOR_SPLITTER = Splitter.on(",").omitEmptyStrings()
-      .trimResults();
   private static final long MAX_CACHE_SIZE = 50 * 1024 * 1024; // 50MB
   private static final long EXPIRE_AFTER_WRITE = 30;
   private final HttpHeaders propertiesResponseHeaders;
@@ -172,7 +170,7 @@ public class ConfigFileController implements ReleaseMessageListener {
     namespace = namespaceUtil.normalizeNamespace(appId, namespace);
 
     if (Strings.isNullOrEmpty(clientIp)) {
-      clientIp = tryToGetClientIp(request);
+      clientIp = WebUtils.tryToGetClientIp(request);
     }
 
     //1. check whether this client has gray release rules
@@ -301,11 +299,4 @@ public class ConfigFileController implements ReleaseMessageListener {
     }
   }
 
-  private String tryToGetClientIp(HttpServletRequest request) {
-    String forwardedFor = request.getHeader("X-FORWARDED-FOR");
-    if (!Strings.isNullOrEmpty(forwardedFor)) {
-      return X_FORWARDED_FOR_SPLITTER.splitToList(forwardedFor).get(0);
-    }
-    return request.getRemoteAddr();
-  }
 }

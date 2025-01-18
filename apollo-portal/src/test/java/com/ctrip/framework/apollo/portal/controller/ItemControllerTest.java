@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Apollo Authors
+ * Copyright 2024 Apollo Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
  */
 package com.ctrip.framework.apollo.portal.controller;
 
+import com.ctrip.framework.apollo.common.exception.BadRequestException;
 import com.ctrip.framework.apollo.core.enums.ConfigFileFormat;
 import com.ctrip.framework.apollo.portal.component.PermissionValidator;
 import com.ctrip.framework.apollo.portal.entity.model.NamespaceTextModel;
@@ -32,8 +33,6 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.yaml.snakeyaml.constructor.ConstructorException;
-import org.yaml.snakeyaml.constructor.DuplicateKeyException;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ItemControllerTest {
@@ -63,14 +62,14 @@ public class ItemControllerTest {
     itemController.doSyntaxCheck(assemble(ConfigFileFormat.YAML.getValue(), yaml));
   }
 
-  @Test(expected = DuplicateKeyException.class)
+  @Test(expected = BadRequestException.class)
   public void yamlSyntaxCheckWithDuplicatedValue() throws Exception {
     String yaml = loadYaml("case2.yaml");
 
     itemController.doSyntaxCheck(assemble(ConfigFileFormat.YAML.getValue(), yaml));
   }
 
-  @Test(expected = ConstructorException.class)
+  @Test(expected = BadRequestException.class)
   public void yamlSyntaxCheckWithUnsupportedType() throws Exception {
     String yaml = loadYaml("case3.yaml");
 
